@@ -76,5 +76,6 @@ namespace Timekeeping.Service.Test
             Assert.AreEqual(DayOfWeek.Sunday, cycles[1].CycleEndDate.DayOfWeek);
 
         }
+
     }
 }

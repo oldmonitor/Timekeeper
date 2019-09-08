@@ -6,10 +6,12 @@ namespace Timekeeper.Model
 {
     public class TimekeepingRecord
     {
-        public int TimeKeepingCycleNumber
-        {
-            get;set;
-        }
+        //id of the record
+        public int TimekeepingId { get; set; }
+        public int TimeKeepingCycleNumber { get;set; }
+
+        //associated AssignmentTaskId (ID in database) (parent id. one to many relation.)
+        public int AssignmentTaskId { get; set; }
 
         public DateTime DateWorked { get; set; }
 

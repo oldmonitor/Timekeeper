@@ -9,6 +9,14 @@ namespace Timekeeper.Model
     /// </summary>
     public class AssignmentTimekeepingModel
     {
+        public int AssignmentId { get; set; }
+
+        public DateTime AssignmentStartDate { get; set; }
+
+        public DateTime AssignmentEndDate { get; set; }
+       
+        public int? RequireHoursPerWeek { get; set; }
+
         public List<TimeKeepingCycle> TimeKeepingCycles
         {
             get;set;
@@ -17,6 +25,12 @@ namespace Timekeeper.Model
         public List<TimekeepingRecord> TimekeepingRecords
         {
             get;set;
+        }
+
+        public AssignmentTimekeepingModel()
+        {
+            this.TimeKeepingCycles = new List<TimeKeepingCycle>();
+            this.TimekeepingRecords = new List<TimekeepingRecord>();
         }
 
     }
