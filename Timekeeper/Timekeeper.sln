@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29215.179
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Timekeeper.Model", "Timekeeper.Model\Timekeeper.Model.csproj", "{7D5371D0-0D4C-4BEE-BFFC-7F20041272BA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Timekeeper.Model", "Timekeeper.Model\Timekeeper.Model.csproj", "{7D5371D0-0D4C-4BEE-BFFC-7F20041272BA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Timekeeping.Service", "Timekeeping.Service\Timekeeping.Service.csproj", "{A401ACC0-9012-49B6-AA0E-527B16786E35}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Timekeeping.Service", "Timekeeping.Service\Timekeeping.Service.csproj", "{A401ACC0-9012-49B6-AA0E-527B16786E35}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Timekeeping.Service.Test", "Timekeeping.Service.Test\Timekeeping.Service.Test.csproj", "{1DDC5E24-E586-4B07-A8BA-B6EE9A48E637}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Timekeeping.Service.Test", "Timekeeping.Service.Test\Timekeeping.Service.Test.csproj", "{1DDC5E24-E586-4B07-A8BA-B6EE9A48E637}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleTest", "ConsoleTest\ConsoleTest.csproj", "{60567D2A-167F-446C-BC5B-F5416791E718}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleTest", "ConsoleTest\ConsoleTest.csproj", "{60567D2A-167F-446C-BC5B-F5416791E718}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Timekeeping.API", "Timekeeping.API\Timekeeping.API.csproj", "{2B187FDB-D08F-4A90-84C1-94ADEC21C2E5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{60567D2A-167F-446C-BC5B-F5416791E718}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{60567D2A-167F-446C-BC5B-F5416791E718}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{60567D2A-167F-446C-BC5B-F5416791E718}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B187FDB-D08F-4A90-84C1-94ADEC21C2E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B187FDB-D08F-4A90-84C1-94ADEC21C2E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B187FDB-D08F-4A90-84C1-94ADEC21C2E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B187FDB-D08F-4A90-84C1-94ADEC21C2E5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
