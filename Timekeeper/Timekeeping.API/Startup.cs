@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Serilog;
 using Timekeeping.Data.Repository;
 using Timekeeping.Entity.Entities;
 
@@ -31,6 +32,7 @@ namespace Timekeeping.API
             services.AddDbContext<TimekeepingContext>();
 
             services.AddScoped<ICaseRepository, CaseRepository>();
+            services.AddSingleton<Serilog.ILogger>(Log.Logger);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,6 +48,7 @@ namespace Timekeeping.API
             app.UseRouting();
 
             app.UseAuthorization();
+        
 
             app.UseEndpoints(endpoints =>
             {

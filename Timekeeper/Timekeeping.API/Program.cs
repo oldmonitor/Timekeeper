@@ -7,6 +7,7 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Serilog;
 
 namespace Timekeeping.API
 {
@@ -14,11 +15,30 @@ namespace Timekeeping.API
     {
         public static void Main(string[] args)
         {
-            CreateWebHostBuilder(args).Build().Run();
+            Log.Logger = new LoggerConfiguration()
+                .Enrich.FromLogContext()
+                .WriteTo.RollingFile("log-{Date}.log", shared: true)
+                .CreateLogger();
+
+            try
+            {
+                Log.Information("Starting up");
+                CreateWebHostBuilder(args).Build().Run();
+            }
+            catch (Exception exc)
+            {
+                Log.Fatal(exc, "Application start-up failed");
+            }
+            finally
+            {
+                Log.CloseAndFlush();
+            }
+
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
+                .UseStartup<Startup>()
+                .UseSerilog();
     }
 }
