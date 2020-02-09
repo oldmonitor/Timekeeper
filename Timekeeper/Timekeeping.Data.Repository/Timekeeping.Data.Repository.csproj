@@ -1,11 +1,11 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Timekeeper.Model\Timekeeper.Model.csproj" />
+    <ProjectReference Include="..\Timekeeping.Entity\Timekeeping.Entity.csproj" />
   </ItemGroup>
 
 </Project>

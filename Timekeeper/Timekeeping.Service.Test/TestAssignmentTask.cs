@@ -11,9 +11,7 @@ namespace Timekeeping.Service.Test
         [TestMethod]
         public void TestGettingAssignmentTaskData()
         {
-            TimekeepingService timekeepingService = new TimekeepingService();
-            var assignmentModel = timekeepingService.GetAssignmentTimeKeepingModel(1);
-            Assert.IsNotNull(assignmentModel);
+
 
         }
 
