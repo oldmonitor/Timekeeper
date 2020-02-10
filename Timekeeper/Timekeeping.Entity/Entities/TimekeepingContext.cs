@@ -16,6 +16,7 @@ namespace Timekeeping.Entity.Entities
         }
 
         public virtual DbSet<Case> Case { get; set; }
+        public virtual DbSet<User> User { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -49,6 +50,24 @@ namespace Timekeeping.Entity.Entities
                     .IsUnicode(false);
 
                 entity.Property(e => e.LastName)
+                    .IsRequired()
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<User>(entity =>
+            {
+                entity.Property(e => e.PasswordHash)
+                    .IsRequired()
+                    .HasMaxLength(500)
+                    .IsFixedLength();
+
+                entity.Property(e => e.PasswordSalt)
+                    .IsRequired()
+                    .HasMaxLength(500)
+                    .IsFixedLength();
+
+                entity.Property(e => e.UserName)
                     .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false);
