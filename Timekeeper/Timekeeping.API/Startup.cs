@@ -30,7 +30,14 @@ namespace Timekeeping.API
         {
             services.AddControllers();
             services.AddDbContext<TimekeepingContext>();
+            services.AddCors(options =>
+             {
+                 options.AddPolicy("AllowOrigin", builder =>
+                 {
+                     builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
 
+                 });
+             });
             services.AddScoped<ICaseRepository, CaseRepository>();
             services.AddSingleton<Serilog.ILogger>(Log.Logger);
         }
@@ -38,6 +45,8 @@ namespace Timekeeping.API
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseCors("AllowOrigin");
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -54,6 +63,8 @@ namespace Timekeeping.API
             {
                 endpoints.MapControllers();
             });
+
+            
         }
     }
 }

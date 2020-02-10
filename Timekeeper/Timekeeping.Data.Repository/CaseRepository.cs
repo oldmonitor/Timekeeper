@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Timekeeping.Entity.Entities;
+using System.Threading.Tasks;
 
 namespace Timekeeping.Data.Repository
 {
@@ -15,9 +17,9 @@ namespace Timekeeping.Data.Repository
             this._timekeepingContext = timekeepingContext;
         }
 
-        public IEnumerable<Case> GetAllCases()
+        public async Task<IEnumerable<Case>> GetAllCasesAsync()
         {
-            return _timekeepingContext.Case.ToList(); ;
+            return await _timekeepingContext.Case.ToListAsync(); ;
         }
 
 

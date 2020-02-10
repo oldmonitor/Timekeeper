@@ -15,6 +15,7 @@ namespace Timekeeping.API
     {
         public static void Main(string[] args)
         {
+            // start the logger
             Log.Logger = new LoggerConfiguration()
                 .Enrich.FromLogContext()
                 .WriteTo.RollingFile("log-{Date}.log", shared: true)

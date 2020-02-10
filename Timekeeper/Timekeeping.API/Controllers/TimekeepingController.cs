@@ -15,20 +15,17 @@ namespace Timekeeping.API.Controllers
     public class TimekeepingController : ControllerBase
     {
         private ICaseRepository _caseRepository;
-        private ILogger<TimekeepingController> _logger;
-        public TimekeepingController(ICaseRepository caseRepository, ILogger<TimekeepingController> logger)
+        public TimekeepingController(ICaseRepository caseRepository)
         {
             this._caseRepository = caseRepository;
-            this._logger = logger;
         }
 
         public TimekeepingContext Context { get; }
 
         [HttpGet]
-        public IActionResult Cases()
+        public async Task<IActionResult> Cases()
         {
-            var result = this._caseRepository.GetAllCases();
-            _logger.LogInformation(message: "information test");
+            var result = await _caseRepository.GetAllCasesAsync().ConfigureAwait(false);
             return Ok(result);
         }
     }
