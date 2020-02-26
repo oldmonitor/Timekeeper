@@ -49,9 +49,6 @@ namespace Timekeeping.API.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login(LoginModel loginModel)
         {
-
-            throw new Exception("test exception");
-
             var userFromRepo = await _repo.Login(loginModel.Username, loginModel.Password).ConfigureAwait(false);
 
             if (userFromRepo == null)
