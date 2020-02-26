@@ -11,7 +11,7 @@ export class NavComponent implements OnInit {
 
   // model for storing username and password
   model: any = {};
-  constructor(private authService: SecurityService, private alertify: AlertifyService) { }
+  constructor(public authService: SecurityService, private alertify: AlertifyService) { }
 
   ngOnInit() {
   }
@@ -25,8 +25,7 @@ export class NavComponent implements OnInit {
   }
 
   loggedIn() {
-    const token = localStorage.getItem('token');
-    return !!token;
+    return this.authService.loggedIn();
   }
 
   logout() {
