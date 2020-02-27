@@ -14,6 +14,8 @@ import { SecurityService } from './services/security.service';
 import { AlertifyService } from './services/alertify.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { RouterModule } from '@angular/router';
+import { appRoutes } from './routes.routing';
 
 @NgModule({
    declarations: [
@@ -29,7 +31,8 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
       HttpClientModule,
       FormsModule,
       BrowserAnimationsModule,
-      BsDropdownModule.forRoot()
+      BsDropdownModule.forRoot(),
+      RouterModule.forRoot(appRoutes)
    ],
    providers: [
     SecurityService,
