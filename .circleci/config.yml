@@ -1,0 +1,26 @@
+version: 2.1
+jobs:
+  build-and-test:
+    docker:
+      - image: circleci/node:latest-browser
+    environment:
+      IMAGETAG: latest
+    working_directory: ~/Timekeeper/TimekeepingWeb
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+          - v1-dependencies-
+      - run: npm install
+      - save_cache:
+          paths: 
+            - node_modules
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+      - run: npm ng build --prod
+      - run: npm ng test --single-run
+workflows:
+    build-and-test:
+      jobs:
+        - build-and-test
