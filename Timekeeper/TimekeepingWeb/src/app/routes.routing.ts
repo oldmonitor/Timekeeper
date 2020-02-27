@@ -6,7 +6,7 @@ import { UserMessagesComponent } from './components/user-messages/user-messages.
 import { AuthGuard } from './guards/auth.guard';
 
 export const appRoutes: Routes = [
-  {path: 'home', component: HomeComponent},
+  {path: '', component: HomeComponent},
   {
       path: '',
       runGuardsAndResolvers: 'always',
@@ -17,5 +17,5 @@ export const appRoutes: Routes = [
         { path: 'messages', component: UserMessagesComponent},
       ]
   },
-  { path: '**', redirectTo: 'home', pathMatch: 'full'}
+  { path: '**', redirectTo: '', pathMatch: 'full'}
 ];
