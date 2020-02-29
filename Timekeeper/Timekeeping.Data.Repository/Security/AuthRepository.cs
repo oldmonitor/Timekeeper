@@ -24,7 +24,7 @@ namespace Timekeeping.Data.Repository.Security
             user.PasswordHash = passwordHash;
             user.PasswordSalt = passwordSalt;
 
-            await _timekeepingContext.User.AddAsync(user);
+            await _timekeepingContext.Users.AddAsync(user);
 
             await _timekeepingContext.SaveChangesAsync();
 
@@ -34,7 +34,7 @@ namespace Timekeeping.Data.Repository.Security
 
         public async Task<User> Login(string username, string password)
         {
-            var user = await _timekeepingContext.User.FirstOrDefaultAsync(x => x.UserName == username);
+            var user = await _timekeepingContext.Users.FirstOrDefaultAsync(x => x.UserName == username);
 
             if (user == null)
                 return null;
@@ -47,7 +47,7 @@ namespace Timekeeping.Data.Repository.Security
 
         public async Task<bool> UserExists(string username)
         {
-            if (await _timekeepingContext.User.AnyAsync(x => x.UserName == username))
+            if (await _timekeepingContext.Users.AnyAsync(x => x.UserName == username))
                 return true;
 
             return false;

@@ -15,8 +15,9 @@ namespace Timekeeping.Entity.Entities
         {
         }
 
-        public virtual DbSet<Case> Case { get; set; }
-        public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<Case> Cases { get; set; }
+        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<UserPhoto> UserPhotoes { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -31,6 +32,8 @@ namespace Timekeeping.Entity.Entities
         {
             modelBuilder.Entity<Case>(entity =>
             {
+                entity.ToTable("Case");
+
                 entity.Property(e => e.CaseId).ValueGeneratedNever();
 
                 entity.Property(e => e.CaseNumber)
@@ -57,20 +60,50 @@ namespace Timekeeping.Entity.Entities
 
             modelBuilder.Entity<User>(entity =>
             {
+                entity.ToTable("User");
+
+                entity.Property(e => e.FirstName)
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.LastName)
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.PasswordHash)
                     .IsRequired()
-                    .HasMaxLength(500)
+                    .HasMaxLength(64)
                     .IsFixedLength();
 
                 entity.Property(e => e.PasswordSalt)
                     .IsRequired()
-                    .HasMaxLength(500)
+                    .HasMaxLength(128)
                     .IsFixedLength();
 
                 entity.Property(e => e.UserName)
                     .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<UserPhoto>(entity =>
+            {
+                entity.ToTable("UserPhoto");
+
+                entity.Property(e => e.DateAdded)
+                    .HasColumnType("date")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.PhotoUrl)
+                    .IsRequired()
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.UserPhotoes)
+                    .HasForeignKey(d => d.UserId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_UserPhoto_User");
             });
 
             OnModelCreatingPartial(modelBuilder);

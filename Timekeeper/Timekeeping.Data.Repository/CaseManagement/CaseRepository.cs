@@ -19,7 +19,7 @@ namespace Timekeeping.Data.Repository
 
         public async Task<IEnumerable<Case>> GetAllCasesAsync()
         {
-            return await _timekeepingContext.Case.ToListAsync(); ;
+            return await _timekeepingContext.Cases.ToListAsync(); ;
         }
 
 

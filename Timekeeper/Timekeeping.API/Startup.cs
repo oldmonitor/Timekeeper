@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
@@ -17,10 +18,13 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Serilog;
+using Timekeeper.Model;
 using Timekeeping.API.Helpers;
 using Timekeeping.Data.Repository;
 using Timekeeping.Data.Repository.Security;
+using Timekeeping.Data.Repository.TeamManagement;
 using Timekeeping.Entity.Entities;
+using Timekeeping.Service.Seed;
 
 namespace Timekeeping.API
 {
@@ -38,6 +42,7 @@ namespace Timekeeping.API
         {
             services.AddControllers();
             services.AddDbContext<TimekeepingContext>();
+
             services.AddCors(options =>
              {
                  options.AddPolicy("AllowOrigin", builder =>
@@ -46,9 +51,18 @@ namespace Timekeeping.API
 
                  });
              });
+            
+            services.AddControllersWithViews()
+                .AddNewtonsoftJson(options =>
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            );
+
+            //services.AddTransient<FakeUserGeneratorService>();
             services.AddScoped<ICaseRepository, CaseRepository>();
             services.AddSingleton<Serilog.ILogger>(Log.Logger);
             services.AddScoped<IAuthRepository, AuthRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddAutoMapper(c=>c.AddProfile<AutoMapping>(), typeof(Startup));
 
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -65,8 +79,9 @@ namespace Timekeeping.API
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)//, FakeUserGeneratorService seed)
         {
+            //seed.SeedUsers();
             app.UseCors("AllowOrigin");
             app.UseAuthentication();
             if (env.IsDevelopment())
