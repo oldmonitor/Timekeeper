@@ -1,4 +1,3 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 
@@ -16,6 +15,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { RouterModule } from '@angular/router';
 import { appRoutes } from './routes.routing';
+import { UserService } from './services/user.service';
+import { BrowserModule } from '@angular/platform-browser';
+import { TeamComponent } from './components/team/team.component';
+import { UserCardComponent } from './components/team/user-card/user-card.component';
 
 @NgModule({
    declarations: [
@@ -23,10 +26,12 @@ import { appRoutes } from './routes.routing';
       ValueComponent,
       NavComponent,
       HomeComponent,
-      RegisterComponent
+      RegisterComponent,
+      TeamComponent,
+      UserCardComponent
    ],
    imports: [
-      BrowserModule,
+      BrowserModule ,
       AppRoutingModule,
       HttpClientModule,
       FormsModule,
@@ -37,7 +42,8 @@ import { appRoutes } from './routes.routing';
    providers: [
     SecurityService,
     ErrorInterceptorProvider,
-    AlertifyService
+    AlertifyService,
+    UserService
    ],
    bootstrap: [
       AppComponent
