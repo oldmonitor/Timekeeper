@@ -19,10 +19,10 @@ export class TeamComponent implements OnInit {
               private route: ActivatedRoute) { }
 
   ngOnInit() {
-    /*this.route.data.subscribe(data => {
+    this.route.data.subscribe(data => {
       this.users = data.users;
-    });*/
-    this.loadUsers();
+    });
+    // this.loadUsers();
   }
 
   loadUsers() {

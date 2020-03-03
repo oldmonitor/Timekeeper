@@ -8,7 +8,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class UserService {
-  baseUrl = environment.apiUrl + '/user/';
+  baseUrl = environment.apiUrl + '/user';
   constructor(private http: HttpClient) { }
 
   getUsers(): Observable<User[]> {
