@@ -10,6 +10,7 @@ import { UserDetailResolver } from './resolver/user-detail.resolver';
 import { UserListResolver } from './resolver/user-list.resolver';
 import { UserEditComponent } from './components/team/user-edit/user-edit.component';
 import { UserEditResolver } from './resolver/user-edit.resolver';
+import { PreventUnsavedChanges } from './guards/prevent-unsaved.guard';
 
 export const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -23,7 +24,7 @@ export const appRoutes: Routes = [
         { path: 'timesheet', component: TimesheetComponent},
         { path: 'messages', component: UserMessagesComponent},
         { path: 'values', component: ValueComponent},
-        { path: 'user/edit', component: UserEditComponent, resolve: {user: UserEditResolver}},
+        { path: 'user/edit', component: UserEditComponent, resolve: {user: UserEditResolver}, canDeactivate: [PreventUnsavedChanges]},
       ]
   },
   { path: '**', redirectTo: '', pathMatch: 'full'}

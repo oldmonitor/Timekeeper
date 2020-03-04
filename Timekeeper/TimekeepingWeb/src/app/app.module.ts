@@ -28,6 +28,8 @@ import { UserListResolver } from './resolver/user-list.resolver';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { UserEditComponent } from './components/team/user-edit/user-edit.component';
 import { UserEditResolver } from './resolver/user-edit.resolver';
+import { PreventUnsavedChanges } from './guards/prevent-unsaved.guard';
+import { AuthGuard } from './guards/auth.guard';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -70,7 +72,9 @@ export function tokenGetter() {
     UserService,
     UserDetailResolver,
     UserListResolver,
-    UserEditResolver
+    UserEditResolver,
+    AuthGuard,
+    PreventUnsavedChanges
    ],
    bootstrap: [
       AppComponent
