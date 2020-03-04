@@ -11,19 +11,17 @@ import { SecurityService } from '../services/security.service';
 Use resolver so load data before the user detail component loads
 */
 @Injectable()
-export class UserDetailResolver implements Resolve<User> {
+export class UserEditResolver implements Resolve<User> {
     constructor(private userService: UserService, private router: Router,
-                private alertify: AlertifyService) {}
+                private alertify: AlertifyService, private securityService: SecurityService) {}
 
-
-
-    resolve(route: ActivatedRouteSnapshot): Observable<User> {
-      return this.userService.getUser(route.params.id).pipe(
-          catchError(error => {
-              this.alertify.error('Problem retrieving data');
-              this.router.navigate(['/team']);
-              return of(null); // return observable of resolved null
-          })
-      );
-  }
+      resolve(route: ActivatedRouteSnapshot): Observable<User> {
+        return this.userService.getUser(this.securityService.decodedToken.nameid).pipe(
+            catchError(error => {
+                this.alertify.error('Problem retrieving data');
+                this.router.navigate(['/team']);
+                return of(null); // return observable of resolved null
+            })
+        );
+    }
 }

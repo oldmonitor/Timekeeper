@@ -8,6 +8,8 @@ import { ValueComponent } from './components/value/value.component';
 import { UserDetailComponent } from './components/team/user-detail/user-detail.component';
 import { UserDetailResolver } from './resolver/user-detail.resolver';
 import { UserListResolver } from './resolver/user-list.resolver';
+import { UserEditComponent } from './components/team/user-edit/user-edit.component';
+import { UserEditResolver } from './resolver/user-edit.resolver';
 
 export const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -21,6 +23,7 @@ export const appRoutes: Routes = [
         { path: 'timesheet', component: TimesheetComponent},
         { path: 'messages', component: UserMessagesComponent},
         { path: 'values', component: ValueComponent},
+        { path: 'user/edit', component: UserEditComponent, resolve: {user: UserEditResolver}},
       ]
   },
   { path: '**', redirectTo: '', pathMatch: 'full'}

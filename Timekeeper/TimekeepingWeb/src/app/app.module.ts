@@ -26,6 +26,8 @@ import { UserDetailResolver } from './resolver/user-detail.resolver';
 import { UserListResolver } from './resolver/user-list.resolver';
 // import { NgxGalleryModule } from 'ngx-gallery';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
+import { UserEditComponent } from './components/team/user-edit/user-edit.component';
+import { UserEditResolver } from './resolver/user-edit.resolver';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -40,7 +42,8 @@ export function tokenGetter() {
       RegisterComponent,
       TeamComponent,
       UserCardComponent,
-      UserDetailComponent
+      UserDetailComponent,
+      UserEditComponent
    ],
    imports: [
       BrowserModule ,
@@ -66,7 +69,8 @@ export function tokenGetter() {
     AlertifyService,
     UserService,
     UserDetailResolver,
-    UserListResolver
+    UserListResolver,
+    UserEditResolver
    ],
    bootstrap: [
       AppComponent
